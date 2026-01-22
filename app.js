@@ -2,7 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+const connectToMongoDB = require('./mongoose');
+
 async function startServer() {
+  await connectToMongoDB();
+
   const app = express();
   const port = process.env.PORT || 4000;
 
