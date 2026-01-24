@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+const routes = require('./routes');
 const connectToMongoDB = require('./mongoose');
 
 async function startServer() {
@@ -14,6 +15,8 @@ async function startServer() {
   app.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
   app.use(bodyParser.json());
 
+  app.use('/', routes);
+
   app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });
@@ -22,4 +25,3 @@ async function startServer() {
 }
 
 startServer();
-
